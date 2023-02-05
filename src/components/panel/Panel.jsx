@@ -66,7 +66,7 @@ function Panel() {
     <div className="border-l-2 border-opacity-5 border-white   h-screen  ">
       <div className="tabs tabs-boxed w-fit m-4 ">
         <a
-          onClick={() => setActiveTab(1)}
+          onClick={() => setActiveTab(0)}
           className={`tab   text-lg  ${
             activeTab == 0 ? "tab-active font-semibold text-white" : ""
           }`}
@@ -74,7 +74,7 @@ function Panel() {
           History
         </a>
         <a
-          onClick={() => setActiveTab(0)}
+          onClick={() => setActiveTab(1)}
           className={`tab   text-lg ${
             activeTab == 1 ? "tab-active font-semibold text-white " : ""
           }`}
