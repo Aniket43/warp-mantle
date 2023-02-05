@@ -75,25 +75,10 @@ function Wallet() {
       wallet: address,
       signer: signer,
     });
-    // Subscribe to accounts change
-    provider.on("accountsChanged", (accounts) => {
-      console.log(accounts);
-    });
 
-    // Subscribe to chainId change
-    provider.on("chainChanged", (chainId) => {
-      console.log(chainId);
-    });
-
-    // Subscribe to session connection
-    provider.on("connect", () => {
-      console.log("connect");
-    });
-
-    // Subscribe to session disconnection
-    provider.on("disconnect", (code, reason) => {
-      console.log(code, reason);
-    });
+    instance.on("accountsChanged", console.log("ACCOunt Changed"));
+    instance.on("chainChanged", console.log("Chain Changed"));
+    instance.on("networkChanged", console.log("Network Changed"));
   };
 }
 

@@ -19,7 +19,7 @@ function Navbar() {
   async function uploadToTableland() {
     setWriting(true);
     // Establish a connection
-    const tableland = connect({ network: "testnet",  chain: 'polygon-mumbai'  });
+    const tableland = connect({ network: "testnet", chain: "polygon-mumbai" });
 
     // Create a table
     // let { name } = await tableland.create(
@@ -33,7 +33,7 @@ function Navbar() {
 
     // // Wait for the table to be created, then query
     const writeRes = await tableland.write(
-      `INSERT INTO ${name} VALUES (${start},'${state.database.receiverWallet}', '${state.database.fileUrl}', '${state.database.wallet}');`,
+      `INSERT INTO ${name} VALUES (${start},'${state.database.receiverWallet}', '${state.database.fileUrl}', '${state.database.wallet}');`
     );
 
     // Wait for the write to complete
@@ -85,9 +85,9 @@ function Navbar() {
 
   async function readTablelandData(tableName) {
     // Establish a connection
-    const tableland = connect({ network: "testnet",  chain: 'polygon-mumbai'  });
+    const tableland = connect({ network: "testnet", chain: "polygon-mumbai" });
     const receiptRes = await tableland.receipt(
-      "0x867b803a36feeb7ff35f5331f74fcee8bd837ed0d06c866423c7884a0dc83320",
+      "0x867b803a36feeb7ff35f5331f74fcee8bd837ed0d06c866423c7884a0dc83320"
     );
     console.log(receiptRes);
     const readRes = await tableland.read(`SELECT * FROM ${tableName};`);
@@ -95,26 +95,28 @@ function Navbar() {
   }
 
   return (
-    <div className='navbar bg-primary shadow   top-0 z-50 sticky '>
-      <div className='flex-1 mx-4 '>
-        <img className='h-full w-36  ' src={logo}></img>
+    <div className="navbar bg-primary shadow   top-0 z-50 sticky ">
+      <div className="flex-1 mx-4 ">
+        <img className="h-full w-36  " src={logo}></img>
       </div>
-      <div className='flex-none'>
-        <div className='dropdown dropdown-end'>
-          <label tabIndex='0' className='btn btn-ghost btn-circle'>
-            <div className='indicator'>
+      <div className="flex-none">
+        <div className="dropdown dropdown-end">
+          <label tabIndex="0" className="btn btn-ghost btn-circle">
+            <div className="indicator">
               <IconWallet onClick={() => connectWallet()} />
               <span
                 className={`badge badge-sm indicator-item ${
                   state.database.wallet ? "badge-success" : "badge-error"
-                }`}></span>
+                }`}
+              ></span>
             </div>
           </label>
           <div
-            tabIndex='0'
-            className='mt-3 card card-compact dropdown-content  bg-base-100 shadow'>
-            <div className='card-body bg-slate-400 text-base-300 px-4 w-max'>
-              <span className='font-bold '>
+            tabIndex="0"
+            className="mt-3 card card-compact dropdown-content  bg-base-100 shadow"
+          >
+            <div className="card-body bg-slate-400 text-base-300 px-4 w-max">
+              <span className="font-bold ">
                 Wallet ID : {state.database.wallet}
               </span>
             </div>
@@ -124,23 +126,25 @@ function Navbar() {
         {state.database.wallet.length > 1 ? (
           <>
             <label
-              htmlFor='my-modal-3'
-              className='btn modal-button bg-white text-warp-primary hidden'>
+              htmlFor="my-modal-3"
+              className="btn modal-button bg-white text-warp-primary hidden"
+            >
               Upload Files
             </label>
           </>
         ) : null}
 
-        <input type='checkbox' id='my-modal-3' className='modal-toggle' />
-        <div className='modal'>
-          <div className='modal-box relative w-full'>
-            <ul className='steps w-full'>
+        <input type="checkbox" id="my-modal-3" className="modal-toggle" />
+        <div className="modal">
+          <div className="modal-box relative w-full">
+            <ul className="steps w-full">
               <li
                 className={
                   state.database.activeTab >= 0
                     ? " step step-primary"
                     : " step "
-                }>
+                }
+              >
                 Upload File
               </li>
               <li
@@ -148,7 +152,8 @@ function Navbar() {
                   state.database.activeTab >= 1
                     ? " step step-primary"
                     : " step "
-                }>
+                }
+              >
                 Wallet
               </li>
               {/* <li
@@ -164,7 +169,8 @@ function Navbar() {
                   state.database.activeTab >= 2
                     ? " step step-primary"
                     : " step "
-                }>
+                }
+              >
                 Done
               </li>
             </ul>
@@ -177,19 +183,22 @@ function Navbar() {
                     activeTab: (state.database.activeTab -= 1),
                   })
                 }
-                className='btn btn-sm btn-circle absolute left-2 top-2'>
+                className="btn btn-sm btn-circle absolute left-2 top-2"
+              >
                 <IconChevronLeft />
               </label>
             ) : null}
 
             <label
-              htmlFor='my-modal-3'
-              className='btn btn-sm btn-circle absolute right-2 top-2'>
+              htmlFor="my-modal-3"
+              className="btn btn-sm btn-circle absolute right-2 top-2"
+            >
               ✕
             </label>
 
             <div
-              className={state.database.activeTab === 0 ? "block" : "hidden"}>
+              className={state.database.activeTab === 0 ? "block" : "hidden"}
+            >
               <IpfsUpload
                 setPct={setPct}
                 setUploading={setUploading}
@@ -203,13 +212,14 @@ function Navbar() {
             </div>
 
             <div
-              className={state.database.activeTab === 1 ? "block" : "hidden"}>
-              <h3 className='text-lg font-bold '>
+              className={state.database.activeTab === 1 ? "block" : "hidden"}
+            >
+              <h3 className="text-lg font-bold ">
                 Enter receiver's wallet Address🪐
               </h3>
 
               <input
-                type='text'
+                type="text"
                 onChange={(e) => {
                   state.setDatabase({
                     ...state.database,
@@ -218,19 +228,20 @@ function Navbar() {
                 }}
                 multiple
                 value={state.database.receiverWallet}
-                placeholder='Wallet Address'
-                className='input input-bordered w-full max-w-xs my-4'
+                placeholder="Wallet Address"
+                className="input input-bordered w-full max-w-xs my-4"
               />
 
               <button
-                className='btn btn-success mx-2'
+                className="btn btn-success mx-2"
                 onClick={() => {
                   state.setDatabase({
                     ...state.database,
                     activeTab: (state.database.activeTab += 1),
                   });
                   uploadToTableland();
-                }}>
+                }}
+              >
                 Next
               </button>
             </div>
@@ -278,22 +289,24 @@ function Navbar() {
             </div> */}
 
             <div
-              className={state.database.activeTab === 2 ? "block" : "hidden"}>
-              <h3 className='text-lg font-bold '>Confirming 🪐</h3>
+              className={state.database.activeTab === 2 ? "block" : "hidden"}
+            >
+              <h3 className="text-lg font-bold ">Confirming 🪐</h3>
               <div>
                 Uploading Files to IPFS ✔️
                 <a
-                  className='text-primary underline'
+                  className="text-primary underline"
                   rel={"noreferrer noopener"}
                   target={"_blank"}
-                  href={`https://${state.database.fileUrl}.ipfs.dweb.link`}>
+                  href={`https://${state.database.fileUrl}.ipfs.dweb.link`}
+                >
                   Test Link
                 </a>
               </div>
-              <div className='flex items-center'>
+              <div className="flex items-center">
                 Creating Tabeland entry{" "}
                 {writing ? (
-                  <div className='btn btn-ghost loading '></div>
+                  <div className="btn btn-ghost loading "></div>
                 ) : (
                   <span>✔️</span>
                 )}
@@ -301,7 +314,7 @@ function Navbar() {
               <p>
                 Sending Mail{" "}
                 {sending ? (
-                  <div className='btn btn-ghost loading '></div>
+                  <div className="btn btn-ghost loading "></div>
                 ) : emailSent ? (
                   <span>✔️</span>
                 ) : emailSent === false ? (
@@ -312,19 +325,20 @@ function Navbar() {
             </div>
           </div>
         </div>
-        <div className='dropdown dropdown-end hidden'>
-          <label tabIndex='0' className='btn btn-ghost btn-circle avatar'>
-            <div className='w-10 rounded-full'>
-              <img src='https://placeimg.com/80/80/people' />
+        <div className="dropdown dropdown-end hidden">
+          <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
+            <div className="w-10 rounded-full">
+              <img src="https://placeimg.com/80/80/people" />
             </div>
           </label>
           <ul
-            tabIndex='0'
-            className='menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52'>
+            tabIndex="0"
+            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+          >
             <li>
-              <a className='justify-between'>
+              <a className="justify-between">
                 Profile
-                <span className='badge'>New</span>
+                <span className="badge">New</span>
               </a>
             </li>
             <li>
