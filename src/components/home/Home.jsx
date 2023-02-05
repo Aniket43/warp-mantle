@@ -376,7 +376,7 @@ function Navbar() {
             className="input input-bordered w-full max-w-xs "
           />
 
-          <input
+          {/* <input
             type="text"
             onChange={(e) => {
               state.setDatabase({
@@ -387,7 +387,7 @@ function Navbar() {
             disabled={state.database.receiverWallet.length < 16}
             placeholder="Mail ID of the receiver (optional)"
             className="input input-bordered w-full max-w-xs  align-middle  "
-          />
+          /> */}
 
           <button
             disabled={

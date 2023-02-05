@@ -97,7 +97,7 @@ function Navbar() {
   return (
     <div className="navbar bg-primary shadow   top-0 z-50 sticky ">
       <div className="flex-1 mx-4 ">
-        <img className="h-full w-36  " src={logo}></img>
+        <img className="h-full w-28  " src={logo}></img>
       </div>
       <div className="flex-none">
         <div className="dropdown dropdown-end">

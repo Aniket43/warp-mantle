@@ -47,10 +47,20 @@ function HistoryPanel() {
     let count = await historyContract.getRecieverHistoryCount(user);
     console.log("USER HISTORY COUNT :", count);
     count = parseInt(count._hex);
+
+    let arr = [];
     while (count !== 0) {
       count--;
       const data = await historyContract.getUserHistory(user, count);
       console.log("USER HISTORY DATA :", data);
+      arr.push(data);
+    }
+    if (arr.length > 0) {
+      state.setDatabase({
+        ...state.database,
+
+        history: arr,
+      });
     }
   }
   function formatted_date(d) {
@@ -115,16 +125,16 @@ function HistoryPanel() {
         </button>
       </div>
       {state.database.history.map((history, index) => {
-        return history[4] === state.database.wallet ? (
+        return (
           <div
             className="border-b-2 border-opacity-5 border-white p-3"
             key={index}
           >
             <div className="flex items-center gap-4">
-              <p className="font-bold text-slate-200">{history[1]}</p>
+              <p className="font-bold text-slate-200">{history[2]}</p>
               <a
                 target={"_blank"}
-                href={`https://${history[3]}.ipfs.dweb.link/` + history[1]}
+                href={`https://files.lighthouse.storage/viewFile/${history[1]}`}
                 className=" text-sm cursor-pointer underline text-yellow-400"
               >
                 open
@@ -133,44 +143,46 @@ function HistoryPanel() {
             <div className="flex items-center gap-4  ">
               <div className="mr-2 flex ">
                 <img src={To} className="h-6 w-6"></img>
-                <span className="text-slate-200">To:</span>{" "}
-                {history[2].slice(0, 6)}...
-                {history[2].slice(history[2].length - 2, history[2].length)}
-              </div>
-              <p className="text-xs opacity-40">
-                {new Date(history[0] * 1).toString()}
-              </p>
-            </div>
-          </div>
-        ) : history[2] === state.database.wallet ? (
-          <div
-            className="border-b-2 border-opacity-5 border-white p-3"
-            key={index}
-          >
-            <div className="flex items-center gap-4">
-              <p className="font-bold text-slate-200">{history[1]}</p>
-              <a
-                target={"_blank"}
-                href={`https://${history[3]}.ipfs.dweb.link/` + history[1]}
-                className=" text-sm cursor-pointer underline text-yellow-400"
-              >
-                open
-              </a>
-            </div>
-            <div className="flex items-center gap-4  ">
-              <div className="mr-2 flex ">
-                <img src={From} className="h-6 w-6"></img>
                 <span className="text-slate-200">From:</span>{" "}
-                {history[3].slice(0, 6)}...
-                {history[3].slice(history[2].length - 2, history[2].length)}
+                {history[0].slice(0, 6)}...
+                {history[0].slice(history[0].length - 2, history[0].length)}
               </div>
-
               <p className="text-xs opacity-40">
-                {new Date(history[0] * 1).toString()}
+                {new Date(history[3] * 1).toString()}
               </p>
             </div>
           </div>
-        ) : null;
+        );
+
+        // : history[2] === state.database.wallet ? (
+        //   <div
+        //     className="border-b-2 border-opacity-5 border-white p-3"
+        //     key={index}
+        //   >
+        //     <div className="flex items-center gap-4">
+        //       <p className="font-bold text-slate-200">{history[1]}</p>
+        //       <a
+        //         target={"_blank"}
+        //         href={`https://${history[3]}.ipfs.dweb.link/` + history[1]}
+        //         className=" text-sm cursor-pointer underline text-yellow-400"
+        //       >
+        //         open
+        //       </a>
+        //     </div>
+        //     <div className="flex items-center gap-4  ">
+        //       <div className="mr-2 flex ">
+        //         <img src={From} className="h-6 w-6"></img>
+        //         <span className="text-slate-200">From:</span>{" "}
+        //         {history[3].slice(0, 6)}...
+        //         {history[3].slice(history[2].length - 2, history[2].length)}
+        //       </div>
+
+        //       <p className="text-xs opacity-40">
+        //         {new Date(history[0] * 1).toString()}
+        //       </p>
+        //     </div>
+        //   </div>
+        // ) : null;
       })}
     </div>
   );
