@@ -16,36 +16,36 @@ function Navbar() {
   const [sending, setSending] = useState(false);
   const [emailSent, setEmailSent] = useState();
   const start = Date.now();
-  async function uploadToTableland() {
-    setWriting(true);
-    // Establish a connection
-    const tableland = connect({ network: "testnet", chain: "polygon-mumbai" });
+  // async function uploadToTableland() {
+  //   setWriting(true);
+  //   // Establish a connection
+  //   const tableland = connect({ network: "testnet", chain: "polygon-mumbai" });
 
-    // Create a table
-    // let { name } = await tableland.create(
-    //   `id text, receiver text,  fileCid text, creator text,  primary key (id)`,
-    //   `warp`,
-    // );
+  //   // Create a table
+  //   // let { name } = await tableland.create(
+  //   //   `id text, receiver text,  fileCid text, creator text,  primary key (id)`,
+  //   //   `warp`,
+  //   // );
 
-    // console.log(await name);
+  //   // console.log(await name);
 
-    const name = "warp_5_214";
+  //   const name = "warp_5_214";
 
-    // // Wait for the table to be created, then query
-    const writeRes = await tableland.write(
-      `INSERT INTO ${name} VALUES (${start},'${state.database.receiverWallet}', '${state.database.fileUrl}', '${state.database.wallet}');`
-    );
+  //   // // Wait for the table to be created, then query
+  //   const writeRes = await tableland.write(
+  //     `INSERT INTO ${name} VALUES (${start},'${state.database.receiverWallet}', '${state.database.fileUrl}', '${state.database.wallet}');`
+  //   );
 
-    // Wait for the write to complete
-    console.log(await writeRes.hash);
+  //   // Wait for the write to complete
+  //   console.log(await writeRes.hash);
 
-    setWriting(false);
+  //   setWriting(false);
 
-    //sendMail();
-    // Query the table
-    const readRes = await tableland.read(`SELECT * FROM ${name};`);
-    console.log(await readRes);
-  }
+  //   //sendMail();
+  //   // Query the table
+  //   const readRes = await tableland.read(`SELECT * FROM ${name};`);
+  //   console.log(await readRes);
+  // }
 
   async function sendMail() {
     setSending(true);
@@ -83,16 +83,16 @@ function Navbar() {
       });
   }
 
-  async function readTablelandData(tableName) {
-    // Establish a connection
-    const tableland = connect({ network: "testnet", chain: "polygon-mumbai" });
-    const receiptRes = await tableland.receipt(
-      "0x867b803a36feeb7ff35f5331f74fcee8bd837ed0d06c866423c7884a0dc83320"
-    );
-    console.log(receiptRes);
-    const readRes = await tableland.read(`SELECT * FROM ${tableName};`);
-    console.log(await readRes);
-  }
+  // async function readTablelandData(tableName) {
+  //   // Establish a connection
+  //   const tableland = connect({ network: "testnet", chain: "polygon-mumbai" });
+  //   const receiptRes = await tableland.receipt(
+  //     "0x867b803a36feeb7ff35f5331f74fcee8bd837ed0d06c866423c7884a0dc83320"
+  //   );
+  //   console.log(receiptRes);
+  //   const readRes = await tableland.read(`SELECT * FROM ${tableName};`);
+  //   console.log(await readRes);
+  // }
 
   return (
     <div className="navbar bg-primary shadow   top-0 z-50 sticky ">
@@ -206,9 +206,9 @@ function Navbar() {
                 uploading={uploading}
               />
 
-              <button onClick={() => readTablelandData("warp_5_214")}>
+              {/* <button onClick={() => readTablelandData("warp_5_214")}>
                 Read Tableland Data
-              </button>
+              </button> */}
             </div>
 
             <div
@@ -232,7 +232,7 @@ function Navbar() {
                 className="input input-bordered w-full max-w-xs my-4"
               />
 
-              <button
+              {/* <button
                 className="btn btn-success mx-2"
                 onClick={() => {
                   state.setDatabase({
@@ -243,7 +243,7 @@ function Navbar() {
                 }}
               >
                 Next
-              </button>
+              </button> */}
             </div>
 
             {/* <div

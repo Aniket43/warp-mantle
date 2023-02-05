@@ -52,7 +52,6 @@ function Panel() {
         ...state.database,
         conversations: allConversations,
         xmtp: xmtp,
-        history: revRows,
         tableland: tableland,
       });
     }
@@ -69,7 +68,7 @@ function Panel() {
         <a
           onClick={() => setActiveTab(1)}
           className={`tab   text-lg  ${
-            activeTab == 1 ? "tab-active font-semibold text-white" : ""
+            activeTab == 0 ? "tab-active font-semibold text-white" : ""
           }`}
         >
           History
@@ -77,7 +76,7 @@ function Panel() {
         <a
           onClick={() => setActiveTab(0)}
           className={`tab   text-lg ${
-            activeTab == 0 ? "tab-active font-semibold text-white " : ""
+            activeTab == 1 ? "tab-active font-semibold text-white " : ""
           }`}
         >
           Chats

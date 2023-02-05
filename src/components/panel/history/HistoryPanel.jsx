@@ -86,6 +86,7 @@ function HistoryPanel() {
   }
 
   useEffect(() => {
+    console.log(state.database.history);
     readHistoryContract();
   }, [state.database.wallet]);
 
