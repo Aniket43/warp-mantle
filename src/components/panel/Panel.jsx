@@ -93,9 +93,9 @@ function Panel() {
       </div>
       <div className="   overflow-y-auto  ">
         <div>
-          {activeTab == 0 && <ChatsPanel />}
+          {activeTab == 0 && <HistoryPanel />}
 
-          {activeTab == 1 && <HistoryPanel />}
+          {activeTab == 1 && <ChatsPanel />}
           {activeTab == 2 && <ContactsPanel />}
         </div>
       </div>
