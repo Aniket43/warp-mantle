@@ -71,7 +71,7 @@ function Panel() {
             activeTab == 0 ? "tab-active font-semibold text-white" : ""
           }`}
         >
-          History
+          Files
         </a>
         <a
           onClick={() => setActiveTab(1)}
