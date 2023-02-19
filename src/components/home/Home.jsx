@@ -356,11 +356,11 @@ function Navbar() {
           <div className={`${uploading ? "block" : "hidden"}`}>
             <progress
               className="progress progress-success w-56"
-              value={pct.toFixed(2) * 100}
+              value={pct.toFixed(2)}
               max="100"
             ></progress>
 
-            <p>{pct && uploading ? `${pct.toFixed(2) * 100}% complete` : ""}</p>
+            <p>{pct && uploading ? `${pct.toFixed(2)}% complete` : ""}</p>
           </div>
           <input
             type="text"
